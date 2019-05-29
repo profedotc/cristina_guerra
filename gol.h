@@ -1,5 +1,5 @@
-#ifndef gol.h
-#define gol.h
+#ifndef _PERSON_H_
+#define _PERSON_H_
 #include <stdlib.h>
 #include <stdbool.h>
 
