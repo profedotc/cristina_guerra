@@ -12,7 +12,7 @@ struct gol {
 };
 
 void gol_init(struct gol *gol);
-void gol_print(struct gol *gol);
+void gol_print(const struct gol *gol);
 void gol_step(struct gol *gol);
 int gol_count_neighbors(bool mundo[TAM_X][TAM_Y], bool *position);
 bool gol_get_cell(bool mundo[TAM_X][TAM_Y], bool *position);

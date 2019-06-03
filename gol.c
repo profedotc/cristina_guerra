@@ -18,7 +18,7 @@ void gol_init(struct gol *gol)
 
 }
 
-void gol_print(struct gol *gol)
+void gol_print(const struct gol *gol)
 {
 	for (int x = 0; x < TAM_X; x++) {
 		for (int y = 0; y < TAM_Y; y++) {
