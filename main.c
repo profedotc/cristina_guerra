@@ -5,17 +5,14 @@
 int main()
 {
         int i = 0;
-        bool mundo[2][TAM_X][TAM_Y];
-        int index = 0;
+        struct gol gol1;
 
-        gol_init(mundo[index]);
+        gol_init(&gol1);
 
         do {
                 printf("\033cIteration %d\n", i++);
-                gol_print(mundo[index]);
-                int new_index = index ? 0 : 1;
-                gol_step(mundo[index], mundo[new_index]);
-                index = new_index;
+                gol_print(&gol1);
+                gol_step(&gol1);
         } while (getchar() != 'q');
 
         return EXIT_SUCCESS;
