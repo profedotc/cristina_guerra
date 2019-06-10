@@ -1,11 +1,11 @@
 CC = gcc
-FLAGS =
+FLAGS = -Wall -Wextra
 all:main 
 
 release: FLAGS +=-O3
 release: main
 
-debug: FLAGS = -g -O0
+debug: FLAGS += -g -O0
 debug: main
 
 main: main.o gol.o
