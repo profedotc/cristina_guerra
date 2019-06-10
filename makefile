@@ -1,7 +1,8 @@
 CC = gcc
-FLAGS = -O3
+FLAGS =
 all:main 
 
+release: FLAGS +=-O3
 release: main
 
 debug: FLAGS = -g -O0
@@ -11,10 +12,10 @@ main: main.o gol.o
 	$(CC) $(FLAGS) main.o gol.o -o main
 
 main.o: main.c gol.h
-	$(CC) -c main.c
+	$(CC) $(FLAGS) -c main.c
 
 gol.o: gol.c gol.h
-	$(CC) -c gol.c
+	$(CC) $(FLAGS) -c gol.c
 
 clean:
 	rm *.o main
