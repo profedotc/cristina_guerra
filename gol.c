@@ -2,6 +2,9 @@
 #include <stdbool.h>
 #include "gol.h"
 
+static int count_neighbors(bool mundo[TAM_X][TAM_Y], bool *position);
+static bool get_cell(bool mundo[TAM_X][TAM_Y], bool *position);
+
 void gol_init(struct gol *gol)
 {
 	gol->current_world = 0;
@@ -33,7 +36,7 @@ void gol_step(struct gol *gol)
 	int vecinas_vivas = 0;							
 	for (int x = 0; x < TAM_X; x++) {
 		for (int y = 0; y < TAM_Y; y++) {
-			vecinas_vivas = gol_count_neighbors(gol->worlds[gol->current_world], &gol->worlds[gol->current_world][x][y]);
+			vecinas_vivas = count_neighbors(gol->worlds[gol->current_world], &gol->worlds[gol->current_world][x][y]);
 			
 			if (gol->worlds[gol->current_world][x][y]) {
 				gol->worlds[!gol->current_world][x][y] = (vecinas_vivas == 3) || (vecinas_vivas == 2);
@@ -46,22 +49,22 @@ void gol_step(struct gol *gol)
 	gol->current_world = !gol->current_world;
 }
 
-int gol_count_neighbors(bool mundo[TAM_X][TAM_Y], bool *position)
+int count_neighbors(bool mundo[TAM_X][TAM_Y], bool *position)
 {
 	int vecinas_vivas = 0;
-	vecinas_vivas += gol_get_cell(mundo, (position-(TAM_Y-1)));	
-	vecinas_vivas += gol_get_cell(mundo, (position-TAM_Y));	
-	vecinas_vivas += gol_get_cell(mundo, (position-(TAM_Y+1)));
-	vecinas_vivas += gol_get_cell(mundo, (position+1));	
-	vecinas_vivas += gol_get_cell(mundo, (position-1));	
-	vecinas_vivas += gol_get_cell(mundo, (position+(TAM_Y-1)));	
-	vecinas_vivas += gol_get_cell(mundo, (position+TAM_Y));	
-	vecinas_vivas += gol_get_cell(mundo, (position+(TAM_Y+1)));
+	vecinas_vivas += get_cell(mundo, (position-(TAM_Y-1)));	
+	vecinas_vivas += get_cell(mundo, (position-TAM_Y));	
+	vecinas_vivas += get_cell(mundo, (position-(TAM_Y+1)));
+	vecinas_vivas += get_cell(mundo, (position+1));	
+	vecinas_vivas += get_cell(mundo, (position-1));	
+	vecinas_vivas += get_cell(mundo, (position+(TAM_Y-1)));	
+	vecinas_vivas += get_cell(mundo, (position+TAM_Y));	
+	vecinas_vivas += get_cell(mundo, (position+(TAM_Y+1)));
 
 	return vecinas_vivas;
 }
 
-bool gol_get_cell(bool mundo[TAM_X][TAM_Y], bool *position)
+bool get_cell(bool mundo[TAM_X][TAM_Y], bool *position)
 {
 	bool status = *position;
 
