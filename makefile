@@ -1,13 +1,21 @@
-all:main
+CC = gcc
+FLAGS = -Wall -Wextra
+all:main 
+
+release: FLAGS +=-O3
+release: main
+
+debug: FLAGS += -g -O0
+debug: main
 
 main: main.o gol.o
-	gcc main.o gol.o -o main
+	$(CC) $(FLAGS) main.o gol.o -o main
 
 main.o: main.c gol.h
-	gcc -c main.c
+	$(CC) $(FLAGS) -c main.c
 
 gol.o: gol.c gol.h
-	gcc -c gol.c
+	$(CC) $(FLAGS) -c gol.c
 
 clean:
 	rm *.o main
