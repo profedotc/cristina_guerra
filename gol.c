@@ -13,7 +13,7 @@ bool gol_alloc(struct gol *gol, int size_x, int size_y) {
 			free(gol->worlds[world]);
 			return false;
 		}
-		for (int x = 0; x <= size_x; x++) {
+		for (int x = 0; x < size_x; x++) {
 			gol->worlds[world][x] = malloc(size_y * sizeof(bool));
 			if (!gol->worlds[world][x]) {
 				printf("Error al reservar memoria dinamicamente");
@@ -29,10 +29,10 @@ bool gol_alloc(struct gol *gol, int size_x, int size_y) {
 
 void gol_free(struct gol *gol) {
 	for( int world = CURRENT; world <= NEXT; world++ ) {
-		for (int x = 0; x <= gol->size_x; x++) {
+		for (int x = 0; x < gol->size_x; x++) {
 			free(gol->worlds[world][x]);
 		}
-		free(gol->worlds[world]);
+		free(gol->worlds[world]);		
 	}
 }
 
@@ -97,7 +97,7 @@ int count_neighbors(struct gol *gol, int x, int y)
 bool get_cell(struct gol *gol,  int x, int y)
 {
 	bool status = 0;
-	if ((x >= 0 && x <= gol->size_x ) && (y >= 0 && y <= gol->size_y)) {
+	if ((x >= 0 && x < gol->size_x ) && (y >= 0 && y < gol->size_y)) {
 		status = gol->worlds[CURRENT][x][y];
 	}
 
