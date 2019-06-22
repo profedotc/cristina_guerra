@@ -21,6 +21,12 @@ int main()
 
         gol_free(&gol1);
 
+        /*
+        int num = sizeof(&gol1.worlds[0]) / sizeof(bool(*));
+
+        printf("%d\n", num);
+        */
+
         return EXIT_SUCCESS;
 }
 
