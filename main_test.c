@@ -7,7 +7,7 @@ int main()
         int i = 0;
         struct gol gol1;
 
-	bool success = gol_alloc(&gol1, 10, 10);
+	bool success = gol_alloc(&gol1, 10, 20);
 	if (!success) {
 		EXIT_FAILURE;
 	}

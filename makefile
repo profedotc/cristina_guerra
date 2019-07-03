@@ -1,9 +1,9 @@
 CC = gcc
 FLAGS = -Wall -Wextra
 
-.PHONY: main_test
+.PHONY: all release debug test clean
 
-all: main main_test 
+all: main
 
 release: FLAGS +=-O3
 release: main
@@ -11,14 +11,14 @@ release: main
 debug: FLAGS += -g -O0
 debug: main
 
-test: FLAGS += -g -O3
 test: main_test
-
-main_test: main_test.o gol.o
-	$(CC) $(FLAGS) main_test.o gol.o -o main_test
 	valgrind --leak-check=full ./main_test
 
-main_test.o: main_test.c gol.o
+main_test: FLAGS += -g -O3
+main_test: main_test.o gol.o
+	$(CC) $(FLAGS) main_test.o gol.o -o main_test
+
+main_test.o: main_test.c gol.h
 	$(CC) $(FLAGS) -c main_test.c
 
 main: main.o gol.o
@@ -31,4 +31,4 @@ gol.o: gol.c gol.h
 	$(CC) $(FLAGS) -c gol.c
 
 clean:
-	rm *.o main
+	rm -f *.o main main_test
