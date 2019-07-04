@@ -14,13 +14,11 @@ int main()
         gol_init(&gol1);
 
         do {
-                printf("\033cIteration %d\n", i++);
-                gol_print(&gol1);
+                i++;
                 gol_step(&gol1);
-        } while (getchar() != 'q');
+        } while (i < 40);
 
         gol_free(&gol1);
 
         return EXIT_SUCCESS;
 }
-
